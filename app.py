@@ -11,7 +11,11 @@ st.divider()
 text = st.text_area("분석할 텍스트를 입력하세요", placeholder="여기에 텍스트를 입력하세요")
 
 if st.button("분석하기"):
+    print("[LOG] 분석하기 버튼 클릭됨", flush=True)
+    print(f"[LOG] 입력 텍스트: {text}", flush=True)
+
     if not text.strip():
+        print("[LOG] 입력값 없음", flush=True)
         st.warning("텍스트를 입력해 주세요!")
     else:
         result = {
@@ -19,6 +23,8 @@ if st.button("분석하기"):
             "words": len(text.split()),
             "sentences": len([s for s in text.replace("?","!").replace(".","!").split("!") if s.strip()])
         }
+
+        print(f"[LOG] 분석 결과: {result}", flush=True)
 
         st.success("분석 완료!")
         c1, c2, c3 = st.columns(3)
